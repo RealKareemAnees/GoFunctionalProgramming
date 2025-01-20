@@ -1,4 +1,21 @@
-# **Summary of all that shit**
+# **Summary of the book [Functional Programming in Go](https://www.oreilly.com/library/view/functional-programming-in/9781801811163/)**
+
+![alt text](image.png)
+
+<h3 style= "color: white;">
+I have read this book and i highly recommend this book to anyone in software engineering industry and I personally think that developers should learn FP before OOP, this Summary is meant for people who want a refresher or people who already know FP and want to see it applied on Go.
+</h3>
+<h3 style= "color: white;">
+If this is your first time with FP, please read this awesome 10/10 book from  <a href="https://www.oreilly.com/library/view/functional-programming-in/9781801811163/">O'reilly</a>
+</h3>
+
+> I have wrote this summary In a way to cover everything as much as possible, If anything is skipped I have actually wrote that "I have skipped X topic for reason Y"
+
+> If you like this summary and interested in anything further I post you can follow my on [Linkedin](www.linkedin.com/in/kareem-anees-0496b62b3) or [Facebook](https://www.facebook.com/TheyCallMeAbdo)
+
+---
+
+# **PART 1: ESSENTIALS**
 
 ## [Chapter 2]() _Functions as firts class citizens_
 
@@ -195,3 +212,55 @@ func b() {
 > **Idempotency**: it is the same concept as _Refrential transparency_; a function returns the same outputs with the same inputs everytime it is called
 
 ### the rest of this chapter talks about the benifets and use cases of pure and impure functions which is very clear actually and is not worth mentioning
+
+---
+
+## [Chapter 5]() _immutability_
+
+<p style="color:red;">The first part of this chapter talks about GC, Escape analysis, Stack and Heap. these are more of a prerequisite for Software engineering in general rather than being an FP concept</p>
+
+### functor
+
+a functor is a way to apply function `a` on DS `x`
+
+```go
+// functors
+
+func functotAX[a, b any](strategy func(a) b, x []a) []b {
+	var result []b
+	for _, v := range x {
+		result = append(result, strategy(v))
+	}
+	return result
+}
+```
+
+```go
+//usage
+
+func strategy(a int) int { return a * 2 }
+
+var x = []int{1, 2, 3, 4, 5}
+var y = functotAX(strategy, x) // [2, 4, 6, 8, 10]
+
+```
+
+- the function `strategy` doesnt know anything except that it takes `a` and returns `a * 2`
+
+- `functorAX` takes a set of elements (doesn't have to be of type `a`) and loop over them and call `strategy` on each of them
+
+**another simpler example:**
+
+```go
+func functor2(strategy func(any) any, x any) any {
+	return strategy(x) // clear huh?
+}
+```
+
+### monads
+
+better watch this [video](https://www.youtube.com/watch?v=HIBTu-y-Jwk&t=404s), monads are quite tricky to wrap your head around
+
+---
+
+# **PART 2**
