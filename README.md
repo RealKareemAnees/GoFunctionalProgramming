@@ -74,15 +74,13 @@ var a chapter2.Adder = func(x, y int) int {
 fmt.Println(a.Add(1, 2))
 ```
 
-### next
-
-everything else in this chapter is very basic programming and doesn't really worth mentioning
+### everything else in this chapter is very basic programming and doesn't really worth mentioning
 
 ---
 
 ## [Chapter 3]() _Higher-Order Functions_
 
-- **it is a function that either takes a function as input or return a function**
+**it is a function that either takes a function as input or return a function**
 
 ### partial application
 
@@ -154,4 +152,46 @@ if you understand clousures then this thing is not black magic, look at the usag
 
 **if you think about it, it is the same idea as _partial implementation_ but in a nested manner**
 
-### next, i have skipped closures beacuese it doesn't really make any sense to explain it in functional programming summary
+### i have skipped closures beacuese it doesn't really make any sense to explain it in functional programming summary
+
+---
+
+## [Chapter 4]() _purity and testability_
+
+<h3 style= "color: red;" >Important!</h3>
+
+i know that you are going to skip this part but it worth mentioning two things; first: their are some useful topics here, second: escape analysis
+
+> pure functions are essensial in go in terms of performance and **bottlenecks**, if you want to learn more about it visit my post about how purity can highrocket yor golang code performance [here](https://www.facebook.com/share/p/188hthkfx9/), also see this blog about how crazy can GC slow down your app [here](https://medium.com/@roopa.kushtagi/netflixs-journey-from-g1gc-to-zgc-tackling-tail-latencies-66ee75681d49)
+
+### what is purity
+
+_purity is not making any side effect_, also purity is coupled with immutability
+
+- **mutable**: a mutable DS can be modified after it has constructed
+- **immutable**: cannot be modified, it can only be deleted and recreated
+- **Pure function**: a function that doesn't change any state in the program lifetime
+
+> **_the keyword `const` in go creates an immutable DS and it cannot be altered after it's construction, Also the GC doesn't check any `const` declared DS in the heap_**
+
+### Refrential transparency
+
+it is when we can replace the function with it's output
+
+**in other words, if we use the same function with the same inputs multiple times, each time it gives the same output (_statelessly_ without side effects or states)**
+
+an example
+
+```go
+func a(x,y int) {
+	return x + y
+} // Refrentially treansparent as it always return the same x + y for the same x + y
+
+func b() {
+	return time.now()
+} // every moment it returns a unique output (not Refrentially treansparent)
+```
+
+> **Idempotency**: it is the same concept as _Refrential transparency_; a function returns the same outputs with the same inputs everytime it is called
+
+### the rest of this chapter talks about the benifets and use cases of pure and impure functions which is very clear actually and is not worth mentioning
