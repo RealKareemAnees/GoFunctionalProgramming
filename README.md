@@ -640,3 +640,118 @@ or as follows
 ### the rest of this chapter compares _Recursion_ with _Loops_
 
 ---
+
+## [Chapter 8]() _Composition of functions_
+
+this chaprter is about chaining and continuos executing of functions, like what we did in _currying_ & _partial application_ & _monads_ but in much simples and OOP frindly manner
+
+---
+
+### Dot notation chaining
+
+in **_Go_** we can't add methods to DS but we can do this to types, we can either attach _functions_ to a type
+
+```go
+package main
+
+type Str struct {
+	value int
+}
+
+func (S *Str) add(x int) *Str {
+	S.value += x
+	return S
+}
+
+func (S *Str) subtract(x int) *Str {
+	S.value -= x
+	return S
+}
+
+func main() {
+	s := &Str{value: 10}
+	s.add(5).subtract(3)
+	println(s.value) // 12, 10 + 5 - 3
+
+}
+
+```
+
+in the code above we used `Str` struct in OOP manner and returned it as output of ts's methods
+
+> **_Go_** doesn't support for _Lazy evaluation_, **_Go_** does _strikt evaluations_ which means that a statement is called once the runtime reach it, see this awesome paper about this topic [Lazy Evaluation for the Lazy: Automatically Transforming Call-by-value Into Call-by-need](https://lac-dcc.github.io/pubs/TechReports/LaC_TechReport012022.pdf)
+>
+> with being said the interface of a function is it's output, If you have function `x` that returns output `a`, then all users will see it as `a` as it generates `a` once a _"()"_ is put on it
+>
+> in _lazy evaluation_ `x` will generate `a` only when another user use it, which is not our case
+
+<br>
+
+another way to do it is to define your data-type in a more direct way and more "functionally frindly" manner
+
+```go
+// defined a type for int instead of an entire struct
+type number int
+
+func (n number) add(x number) number {
+	return n + x
+}
+
+func (n number) sub(x number) number {
+	return n - x
+}
+
+func main() {
+
+	var n number = 5
+	n = n.add(3)
+	n = n.sub(2)
+	println(n) // 6
+
+}
+```
+
+---
+
+### CPS
+
+**short for:** _Continueos-passing style_
+
+> Note from the book:
+>
+> A continuation is a somewhat abstract concept in the realm of programming languages. It is a function that represents the next computation of a program. It essentially captures the state of our program at the moment of execution (more specifically, the stack), and provides the next step of execution as a function that can be called.
+
+A CPS is commonly refered in _Event Driven Architecture_ as _call-back pattern_, the main function do some staff in asynchronous manner then calls your code
+
+```go
+import "sync"
+
+var wg = sync.WaitGroup{}
+
+func APICall(url string, cb func(string)) {
+	wg.Add(1)
+
+	data := "Data from API call: " + url
+
+	go func() {
+		defer wg.Done()
+		cb(data)
+	}()
+}
+
+func main() {
+
+	APICall("http://example.com", func(data string) {
+		println(data + "API call 1")
+	})
+
+	APICall("http://example.com", func(data string) {
+		println(data + " API call 2")
+	})
+
+	wg.Wait() // Wait for all API calls to finish, before exiting the program, thus they will finish in random order
+
+}
+```
+
+the code above executes `cb` with the provided `data`, this pattern is commonly used in _JavaScript_ $ _Node.JS_ and is very usefull in handling IO and doing basic code execution in _non-blocking_ manner
