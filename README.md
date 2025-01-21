@@ -19,7 +19,43 @@ If this is your first time with FP, please read this awesome 10/10 book from  <a
 
 <br>
 
-## content table
+---
+
+# Table of Contents
+
+- [**Summary of the Book: Functional Programming in Go**](https://www.oreilly.com/library/view/functional-programming-in/9781801811163/)
+  - [Content Table](#content-table)
+- [**Part 1: Essentials**](#part-1-essentials)
+  - [Chapter 2: Functions as First-Class Citizens](#chapter-2-functions-as-first-class-citizens)
+    - [This chapter explains how to treat functions as first-class objects in Go](#this-chapter-explains-how-to-treat-functions-as-first-class-objects-in-go)
+    - [Type Aliases](#type-aliases)
+    - [Using Functions as Objects](#using-functions-as-objects)
+    - [Other Basics](#other-basics)
+  - [Chapter 3: Higher-Order Functions](#chapter-3-higher-order-functions)
+    - [What is a Higher-Order Function?](#what-is-a-higher-order-function)
+    - [Partial Application](#partial-application)
+    - [Function Currying](#function-currying)
+    - [Closures](#closures)
+  - [Chapter 4: Purity and Testability](#chapter-4-purity-and-testability)
+    - [What is Purity?](#what-is-purity)
+    - [Referential Transparency](#referential-transparency)
+    - [Use Cases for Pure and Impure Functions](#use-cases-for-pure-and-impure-functions)
+  - [Chapter 5: Immutability](#chapter-5-immutability)
+    - [Garbage Collection, Escape Analysis, Stack, and Heap](#garbage-collection-escape-analysis-stack-and-heap)
+    - [Functor](#functor)
+    - [Monads](#monads)
+- [**Part 2: Using FP Techniques**](#part-2-using-fp-techniques)
+  - [Chapter 6: Common Categories of Functions](#chapter-6-common-categories-of-functions)
+    - [Predicate-Based Functions](#predicate-based-functions)
+    - [TakeWhile & DropWhile vs. Filter](#takewhile-dropwhile-vs-filter)
+    - [Transformers/Maps](#transformersmaps)
+    - [Reducers](#reducers)
+  - [Chapter 7: Recursion](#chapter-7-recursion)
+    - [Recursion vs. Loops](#recursion-vs-loops)
+  - [Chapter 8: Composition of Functions](#chapter-8-composition-of-functions)
+    - [Dot Notation Chaining](#dot-notation-chaining)
+    - [Continuation-Passing Style (CPS)](#continuation-passing-style-cps)
+- [**The End**](#the-end)
 
 ---
 
@@ -31,7 +67,7 @@ Basic stuff that requires some attention
 
 ## [Chapter 2]() _Functions as first class citizens_
 
-## this chapter says how to treat functions as first class objects in go
+this chapter says how to treat functions as first class objects in go
 
 ---
 
@@ -111,13 +147,13 @@ fmt.Println(a.Add(1, 2))
 
 ---
 
-### everything else in this chapter is very basic programming and doesn't really worth mentioning
+everything else in this chapter is very basic programming and doesn't really worth mentioning
 
 ---
 
 ## [Chapter 3]() _Higher-Order Functions_
 
-## **it is a function that either takes a function as input or return a function**
+**it is a function that either takes a function as input or return a function**
 
 ### partial application
 
@@ -191,7 +227,7 @@ if you understand clousures then this thing is not black magic, look at the usag
 
 ## **if you think about it, it is the same idea as _partial implementation_ but in a nested manner**
 
-### i have skipped closures beacuese it doesn't really make any sense to explain it in functional programming summary
+i have skipped closures beacuese it doesn't really make any sense to explain it in functional programming summary
 
 ---
 
@@ -239,7 +275,7 @@ func b() {
 
 ---
 
-### the rest of this chapter talks about the benifets and use cases of pure and impure functions which is very clear actually and is not worth mentioning
+the rest of this chapter talks about the benifets and use cases of pure and impure functions which is very clear actually and is not worth mentioning
 
 ---
 
@@ -755,3 +791,15 @@ func main() {
 ```
 
 the code above executes `cb` with the provided `data`, this pattern is commonly used in _JavaScript_ $ _Node.JS_ and is very usefull in handling IO and doing basic code execution in _non-blocking_ manner
+
+---
+
+<br>
+
+# The end
+
+Thanks for reading
+
+> **but where is _Part 3_ ???**
+>
+> well, part 3 is just a brief overview of common design patterns and libraries, this book has made excelent work in explaining the basics but this part is another topic for another day + im not eligble for summarising a topic "_design patterns_" that I'm actually still not grasping as a dev
